@@ -1,18 +1,41 @@
 .main{
-flex: 1; 
-display: flex; 
-flex-direction: row; 
-gap: 20px; 
-padding: 40px 20px;
-font-family: Arial, sans-serif;
-background-color: #f0f0f5;
-color: #333;
-min-height: 100vh;
-}
-
-.cards {
   display: flex;
   gap: 40px;
-  flex-wrap: wrap; /*permite que os flex items quebrem para uma nova linha, quando necessário*/
+  flex-wrap: wrap;
+}
+
+.card {
+ background-color: white;
+  border-radius: 2%;
+  padding: 20px;
+  width: 500px;
+  text-align: center;
+  border: solid;
+  border-color: white;
+  box-shadow: 2px 3px 2px rgb(88, 88, 88);
+
+}
+
+.image {
+  height: 70%;
+  width: 70%;
+  border-radius: 2%;
+
+}
+body{
+  background-color: aliceblue;
+  font-family: sans-serif;
+}
+.google{
+  color:black;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  transition: 0.5s;
+  display: flex;
   justify-content: center;
+
+}
+
+.google:hover{
+  font-size:larger;
 }
