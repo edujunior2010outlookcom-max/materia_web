@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light font-monospace">
+    <header class="d-flex flex-column align-items-center gap-3 p-3 bg-secondary-subtle shadow-lg p-4">
+        <div>
+            <h1 class="text-black">Lista de Tarefas</h1>
+        </div>
+        <div class="d-flex justify-content-evenly gap-3">
+            <input type="text" id="tarefa" class="form-control"/>
+            <select id="priori" class="form-select">
+                <option selected hidden>Prioridade</option> // deixa como padrão aparecer "Prioridade", mas obviamente n deixa copmo uma opção clicável, por isso o hidden
+                <option>Alta</option>
+                <option>Media</option>
+                <option>Baixa</option>
+            </select>
+            <button id="btn" class="btn btn-outline-dark">Ok</button>
+        </div>
+    </header>
+    <main id="main" class="d-flex flex-wrap gap-3 p-3">
+    </main>
+    <script>
+        let botao = document.getElementById("btn");
+        botao.addEventListener("click", ()=> {
+            let x = document.getElementById("tarefa").value;
+            let y = document.getElementById("priori").value;
+            let p = document.createElement("p");
+            let cartao = document.createElement("div");  
+            cartao.className = "card p-3 border border-opacity-50 border-dark shadow";
+            if(y == "Alta"){
+                cartao.classList.add("bg-success" , "text-white");
+            } 
+            else if (y == "Media"){
+                cartao.classList.add("bg-warning" , "text-dark");
+            } 
+            else {
+                cartao.classList.add("bg-danger" , "text-white");
+            }
+            p.innerText = "Tarefa: " + x + " | Prioridade: " + y;
+            let main = document.getElementById("main");
+            cartao.appendChild(p);
+            main.appendChild(cartao);
+            document.getElementById("tarefa").value = ""; // só deixa mais bonitinho o site, n interfere em nada
+            document.getElementById("priori").selectedIndex = 0; // eles apenas limpam o input e o select
+         });
+    </script>
+</body>
+</html>
