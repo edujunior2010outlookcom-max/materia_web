@@ -6,19 +6,38 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light font-monospace">
-    <header class="d-flex flex-column align-items-center gap-3 bg-secondary-subtle shadow-lg p-4">
+<body class="body">
+    <header class="d-flex flex-column align-items-center gap-3 header p-4 text-light">
         <div>
             <h1>Procure qualquer TV show!</h1>
         </div>
         <div class="d-flex align-items-center gap-2">
             <input type="text" id="showInput" class="form-control" placeholder="Digite o nome do show"/>
-            <button type="submit" id="busca" class="btn btn-outline-dark" onclick="carregarSeries()">Pesquisar</button>
+            <button type="submit" id="busca" class="btn btn-outline-light" onclick="carregarSeries()">Pesquisar</button>
         </div>
     </header>
     <main class="d-flex flex-wrap gap-3 p-3 align-items-start"">
 
     </main>
+    
+    <style>
+        .body {
+            background-color: rgb(255, 255, 255);
+        }
+        .header{
+            background-color: rgb(9, 7, 73);
+        }
+        .imagem{
+            width: 120px;
+            object-fit: cover;
+        }
+
+
+
+    </style>
+    
+    
+    
     <script>
         let series = [];
         
@@ -32,7 +51,7 @@
                 const cartao = document.createElement("div");
                 const p = document.createElement("p");
                 p.innerText = "Por favor, digite o nome de um TV show.";
-                cartao.className = "card p-3 border border-dark border-opacity-75 shadow-lg";
+                cartao.className = "card p-3 g-3 shadow-lg";
                 cartao.appendChild(p);
                 main.appendChild(cartao);
                 return;
@@ -46,7 +65,7 @@
                 const main = document.querySelector("main");
                 main.innerHTML = "";
                 const cartao = document.createElement("div");
-                cartao.className = "card p-3 border border-dark border-opacity-75 shadow-lg";
+                cartao.className = "card p-3 g-3 shadow-lg";
                 const p = document.createElement("p");
                 p.innerText = erro;
                 cartao.appendChild(p);
@@ -59,7 +78,7 @@
 
             if (series.length === 0) {
                 const cartao = document.createElement("div");
-                cartao.className = "card p-3 border border-dark border-opacity-75 shadow-lg";
+                cartao.className = "card p-3 g-3 shadow-lg";
                 const p = document.createElement("p");
                 p.innerText = "Nenhum TV show encontrado";
                 cartao.appendChild(p);
@@ -69,28 +88,37 @@
 
             series.forEach(serie => {
                 const cartao = document.createElement("div");
-                cartao.className = "card p-3 border border-dark border-opacity-75 shadow-lg";
+                cartao.className = "card d-flex flew-row p-2 gap-3 shadow-lg";
+                
                 const imagem = document.createElement("img");
+                imagem.className = "mb-2 img-fluid imagem"
+                
                 const titulo = document.createElement("h3");
                 titulo.className = "text-center";
-                const score = document.createElement("p");
-                score.className = "text-center";
                 titulo.innerText = serie.show.name;
-                cartao.appendChild(titulo);
+                
+                const score = document.createElement("h6");
+                score.className = "text-center";
+                
+                const info = document.createElement("div")
                 if(serie.score == null) {
                     score.innerText = "Score: Indisponível";
                 } else {
-                    score.innerText = `Score: ${serie.score}`;
+                    score.innerText = `Score: ${serie.score.toFixed(2)}`;
                 }
                 if(serie.show.image == null) {
                     const semImagem = document.createElement("p");
                     semImagem.innerText = "Imagem indisponível";
                     cartao.appendChild(semImagem);
+
                 } else {
                     imagem.src = serie.show.image.medium;
                     cartao.appendChild(imagem);
+
                 }
-                cartao.appendChild(score);
+                info.appendChild(titulo);
+                info.appendChild(score);
+                cartao.appendChild(info);
                 main.appendChild(cartao);
             });
         }
