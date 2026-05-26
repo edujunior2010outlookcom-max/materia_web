@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body class="body">
     <header class="d-flex flex-column align-items-center gap-3 header p-4 text-light">
@@ -16,112 +17,9 @@
             <button type="submit" id="busca" class="btn btn-outline-light" onclick="carregarSeries()">Pesquisar</button>
         </div>
     </header>
-    <main class="d-flex flex-wrap gap-3 p-3 align-items-start"">
-
-    </main>
     
-    <style>
-        .body {
-            background-color: rgb(255, 255, 255);
-        }
-        .header{
-            background-color: rgb(9, 7, 73);
-        }
-        .imagem{
-            width: 120px;
-            object-fit: cover;
-        }
-
-
-
-    </style>
+    <main class="d-flex flex-wrap gap-3 p-3 justify-content-center align-items-start"></main>  
     
-    
-    
-    <script>
-        let series = [];
-        
-        async function carregarSeries() {
-            
-            try {
-            const nomeSerie = document.getElementById("showInput").value.trim();
-            if (nomeSerie === "") {
-                const main = document.querySelector("main");
-                main.innerHTML = "";
-                const cartao = document.createElement("div");
-                const p = document.createElement("p");
-                p.innerText = "Por favor, digite o nome de um TV show.";
-                cartao.className = "card p-3 g-3 shadow-lg";
-                cartao.appendChild(p);
-                main.appendChild(cartao);
-                return;
-            }
-            const resposta = await fetch(`https://api.tvmaze.com/search/shows?q=${nomeSerie}`);
-            series = await resposta.json(); 
-            mostrarNaTela(series);
-            } 
-            
-            catch (erro) {
-                const main = document.querySelector("main");
-                main.innerHTML = "";
-                const cartao = document.createElement("div");
-                cartao.className = "card p-3 g-3 shadow-lg";
-                const p = document.createElement("p");
-                p.innerText = erro;
-                cartao.appendChild(p);
-                main.appendChild(cartao);
-             }
-        } 
-        function mostrarNaTela(series) {
-            const main = document.querySelector("main");
-            main.innerHTML = "";
-
-            if (series.length === 0) {
-                const cartao = document.createElement("div");
-                cartao.className = "card p-3 g-3 shadow-lg";
-                const p = document.createElement("p");
-                p.innerText = "Nenhum TV show encontrado";
-                cartao.appendChild(p);
-                main.appendChild(cartao);
-                return;
-            }
-
-            series.forEach(serie => {
-                const cartao = document.createElement("div");
-                cartao.className = "card d-flex flew-row p-2 gap-3 shadow-lg";
-                
-                const imagem = document.createElement("img");
-                imagem.className = "mb-2 img-fluid imagem"
-                
-                const titulo = document.createElement("h3");
-                titulo.className = "text-center";
-                titulo.innerText = serie.show.name;
-                
-                const score = document.createElement("h6");
-                score.className = "text-center";
-                
-                const info = document.createElement("div")
-                if(serie.score == null) {
-                    score.innerText = "Score: Indisponível";
-                } else {
-                    score.innerText = `Score: ${serie.score.toFixed(2)}`;
-                }
-                if(serie.show.image == null) {
-                    const semImagem = document.createElement("p");
-                    semImagem.innerText = "Imagem indisponível";
-                    cartao.appendChild(semImagem);
-
-                } else {
-                    imagem.src = serie.show.image.medium;
-                    cartao.appendChild(imagem);
-
-                }
-                info.appendChild(titulo);
-                info.appendChild(score);
-                cartao.appendChild(info);
-                main.appendChild(cartao);
-            });
-        }
-    </script>
+    <script src="java.js"></script>
 </body>
 </html>
