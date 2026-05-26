@@ -1,0 +1,20 @@
+.body {
+    background-color: rgb(255, 255, 255);
+    }
+.header{
+     background-color: rgb(9, 7, 73);
+    }
+.imagem {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    }
+.card-serie {
+    width: 500px;
+    height: 250px;
+    }
+    .descricao {
+    max-height: 120px;
+    overflow-y: auto;
+    }
