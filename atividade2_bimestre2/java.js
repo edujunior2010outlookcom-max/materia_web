@@ -1,8 +1,6 @@
 let series = [];
-        
-        async function carregarSeries() {
-            
-            try {
+async function carregarSeries() {
+        try {
             const nomeSerie = document.getElementById("showInput").value.trim();
             if (nomeSerie === "") {
                 const main = document.querySelector("main");
